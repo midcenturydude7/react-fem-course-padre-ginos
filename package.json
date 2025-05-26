@@ -4,14 +4,23 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "vite build",
+    "dev": "vite",
+    "preview": "vite preview",
     "format": "prettier --write \"src/**/*.{js,jsx,css,html}\"",
     "lint": "eslint",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Matt Griffes <mgriffes@gmail.com>",
   "license": "ISC",
   "type": "module",
+  "descrpition": "A simple React app for Padre Gino's restaurant",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/midcenturydude7/react-fem-course-padre-ginos.git"
+  },
+  "homepage": "",
   "devDependencies": {
     "@types/eslint": "^9.6.1",
     "@vitejs/plugin-react": "^4.3.1",
