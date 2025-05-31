@@ -7,6 +7,16 @@ import reactPlugin from "eslint-plugin-react";
 export default [
   js.configs.recommended,
   {
+    ...reactPlugin.configs.flat.recommended,
+    settings: {
+      react: {
+        version: "detect",
+      },
+    },
+  },
+  reactPlugin.configs.flat["jsx-runtime"],
+  // Custom configuration for React projects
+  {
     files: ["**/*.js", "**/*.jsx"],
     plugins: {
       react: reactPlugin,
@@ -16,7 +26,7 @@ export default [
         ...globals.browser,
         ...globals.node,
         React: "readonly",
-        ReactDOM: "readonly"
+        ReactDOM: "readonly",
       },
       parserOptions: {
         ecmaFeatures: {
@@ -28,8 +38,8 @@ export default [
     },
     settings: {
       react: {
-        version: "detect"
-      }
+        version: "detect",
+      },
     },
     rules: {
       // React recommended rules
@@ -41,7 +51,9 @@ export default [
       "react/no-is-mounted": "error",
       "react/no-unknown-property": "error",
       "react/react-in-jsx-scope": "error",
-      "react/require-render-return": "error"
+      "react/require-render-return": "error",
+      "react/no-unescaped-entities": "off",
+      "react/prop-types": "off",
     },
   },
   prettier,
