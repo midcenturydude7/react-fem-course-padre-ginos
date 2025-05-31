@@ -9,6 +9,7 @@ const Pizza = (props) => {
 
 export default Pizza;
 
+// The following code is an alternative way to write the Pizza component using React.createElement
 // const Pizza = (props) => {
 //   return React.createElement("div", {}, [
 //     React.createElement("h1", {}, props.name),
