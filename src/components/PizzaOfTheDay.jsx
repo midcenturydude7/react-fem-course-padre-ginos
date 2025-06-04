@@ -3,6 +3,8 @@ import { usePizzaOfTheDay } from "../hooks/usePizzaOfTheDay";
 const intl = new Intl.NumberFormat("en-US", {
   style: "currency",
   currency: "USD",
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2,
 });
 
 const PizzaOfTheDay = () => {
