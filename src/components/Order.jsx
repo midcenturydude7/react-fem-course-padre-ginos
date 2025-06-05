@@ -16,6 +16,22 @@ export default function Order() {
   const [cart, setCart] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
 
+  async function checkout() {
+    setLoading(true);
+
+    await fetch("/api/order"),
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ cart }),
+      };
+
+    setCart([]);
+    setLoading(false);
+  }
+
   let price, selectedPizza;
 
   if (!loading) {
@@ -53,6 +69,7 @@ export default function Order() {
               <select
                 onChange={(e) => setPizzaType(e.target.value)}
                 name="pizza-type"
+                id="pizza-type"
                 value={pizzaType}
               >
                 {pizzaTypes.map((pizza) => (
@@ -116,7 +133,11 @@ export default function Order() {
           )}
         </form>
       </div>
-      {loading ? <h2>LOADING ...</h2> : <Cart cart={cart} />}
+      {loading ? (
+        <h2>LOADING ...</h2>
+      ) : (
+        <Cart checkout={checkout} cart={cart} />
+      )}
     </div>
   );
 }
