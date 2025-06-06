@@ -1,6 +1,6 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { RouteProvider, createRouter } from "@tanstack/react-router";
+import { RouterProvider, createRouter } from "@tanstack/react-router";
 import { routeTree } from "./routeTree.gen";
 
 const router = createRouter({ routeTree });
@@ -8,7 +8,7 @@ const router = createRouter({ routeTree });
 const App = () => {
   return (
     <StrictMode>
-      <RouteProvider router={router} />
+      <RouterProvider router={router} />
     </StrictMode>
   );
 };

@@ -1,7 +1,12 @@
 import React from "react";
+import { createLazyFileRoute } from "@tanstack/react-router";
 import Pizza from "../components/Pizza";
 import Cart from "../components/Cart";
 import { CartContext } from "../context/contexts";
+
+export const Route = createLazyFileRoute("/order")({
+  component: Order,
+});
 
 const intl = new Intl.NumberFormat("en-US", {
   style: "currency",
@@ -10,7 +15,7 @@ const intl = new Intl.NumberFormat("en-US", {
   maximumFractionDigits: 2,
 });
 
-export default function Order() {
+function Order() {
   const [pizzaTypes, setPizzaTypes] = React.useState([]);
   const [pizzaType, setPizzaType] = React.useState("pepperoni");
   const [pizzaSize, setPizzaSize] = React.useState("M");
@@ -20,14 +25,13 @@ export default function Order() {
   async function checkout() {
     setLoading(true);
 
-    await fetch("/api/order"),
-      {
+    await fetch("/api/order", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ cart }),
-      };
+      });
 
     setCart([]);
     setLoading(false);
