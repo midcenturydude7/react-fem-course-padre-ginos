@@ -1,16 +1,24 @@
-import { StrictMode } from "react";
+import React, { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import Order from "./components/Order";
 import PizzaOfTheDay from "./components/PizzaOfTheDay";
+import Header from "./components/Header";
+import { CartContext } from "./context/contexts";
 
 const App = () => {
+  const cartHook = React.useState([]);
+
   return (
     <StrictMode>
-      <div>
-        <h1 className="logo">Padre Gino's - Order Now</h1>
-        <Order />
-        <PizzaOfTheDay />
-      </div>
+      <CartContext.Provider value={cartHook}>
+        {/* The CartContext.Provider provides the cart state and updater function to its children */}
+        {/* This allows components like Order and PizzaOfTheDay to access and modify the cart state */}
+        <div>
+          <Header />
+          <Order />
+          <PizzaOfTheDay />
+        </div>
+      </CartContext.Provider>
     </StrictMode>
   );
 };

@@ -1,6 +1,7 @@
 import React from "react";
 import Pizza from "./Pizza";
 import Cart from "./Cart";
+import { CartContext } from "../context/contexts";
 
 const intl = new Intl.NumberFormat("en-US", {
   style: "currency",
@@ -13,7 +14,7 @@ export default function Order() {
   const [pizzaTypes, setPizzaTypes] = React.useState([]);
   const [pizzaType, setPizzaType] = React.useState("pepperoni");
   const [pizzaSize, setPizzaSize] = React.useState("M");
-  const [cart, setCart] = React.useState([]);
+  const [cart, setCart] = React.useContext(CartContext);
   const [loading, setLoading] = React.useState(true);
 
   async function checkout() {
