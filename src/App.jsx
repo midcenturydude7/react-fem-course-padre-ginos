@@ -1,24 +1,14 @@
-import React, { StrictMode } from "react";
+import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import Order from "./components/Order";
-import PizzaOfTheDay from "./components/PizzaOfTheDay";
-import Header from "./components/Header";
-import { CartContext } from "./context/contexts";
+import { RouteProvider, createRouter } from "@tanstack/react-router";
+import { routeTree } from "./routeTree.gen";
+
+const router = createRouter({ routeTree });
 
 const App = () => {
-  const cartHook = React.useState([]);
-
   return (
     <StrictMode>
-      <CartContext.Provider value={cartHook}>
-        {/* The CartContext.Provider provides the cart state and updater function to its children */}
-        {/* This allows components like Order and PizzaOfTheDay to access and modify the cart state */}
-        <div>
-          <Header />
-          <Order />
-          <PizzaOfTheDay />
-        </div>
-      </CartContext.Provider>
+      <RouteProvider router={router} />
     </StrictMode>
   );
 };
